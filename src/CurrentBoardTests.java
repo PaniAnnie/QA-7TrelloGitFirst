@@ -62,18 +62,10 @@ import org.testng.annotations.Test;
                 Thread.sleep(5000);
                 driver.findElement(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']")).click();
                 Thread.sleep(10000);
-                System.out.println(driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
-                driver.findElement(By.xpath("//a[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']")).click();
-                driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
-                System.out.println(driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
-            } else {
-                System.out.println(driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
-                driver.findElement(By.xpath("//a[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']")).click();
-                driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
-                System.out.println(driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
             }
-
-
-
+                System.out.println("Number of lists: " + driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
+                driver.findElement(By.xpath("//a[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']")).click();
+                driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
+                System.out.println("Number of lists after deleting: " + driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
         }
     }
