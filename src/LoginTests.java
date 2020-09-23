@@ -15,40 +15,61 @@ public class LoginTests extends TestBase {
     }
 
     @Test
-    public void loginNegativeWrongInput() throws InterruptedException {
-
-        WebElement loginField = driver.findElement(By.id("user"));
-        loginField.click();
-        loginField.clear();
-        loginField.sendKeys("trrrrr@mail.com");
+    public void loginNegativeLoginEmpty() throws InterruptedException {
+        //empty login
         WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.click();
         passwordField.clear();
-        passwordField.sendKeys("11111111");
+        passwordField.sendKeys(PASSWORD);
         driver.findElement(By.id("login")).click();
         Thread.sleep(1000);
         WebElement errorMessage = driver.findElement(By.xpath("//p[@class='error-message']"));
-        System.out.println(errorMessage.getText());
+        System.out.println("Test empty login: " + errorMessage.getText());
     }
 
     @Test
-    public void loginNegativeWrongPassword() throws InterruptedException {
-        WebElement loginField = driver.findElement(By.xpath("//input[@name='user']"));
+    public void loginNegativeWrongLogin() throws InterruptedException {
+        //wrong login
+        WebElement loginField = driver.findElement(By.id("user"));
         loginField.click();
         loginField.clear();
-        loginField.sendKeys("netimeny@inbox.ru");
-        WebElement passwordField = driver.findElement(By.name("password"));
+        loginField.sendKeys("annao");
+        Thread.sleep(3000);
+        WebElement passwordField = driver.findElement(By.id("password"));
         passwordField.click();
         passwordField.clear();
-        passwordField.sendKeys("11111111");
-        driver.findElement(By.cssSelector("#login")).click();
+        passwordField.sendKeys(PASSWORD);
+        WebElement loginButton = driver.findElement(By.id("login"));
+        loginButton.click();
+        Thread.sleep(5000);
+        System.out.println("Test wrong login: " + driver.findElement(By.id("error")).getText());
+    }
+
+
+    @Test
+    public void loginNegativeWrongPassword() throws InterruptedException {
+        //wrong password
+        WebElement loginField = driver.findElement(By.id("user"));
+        loginField.click();
+        loginField.clear();
+        loginField.sendKeys(LOGIN);
         Thread.sleep(1000);
-        WebElement errorMessage = driver.findElement(By.xpath("//p[contains(text(),'.')]"));
-        System.out.println(errorMessage.getText());
-        driver.quit();
+        driver.findElement(By.xpath("//input[@type='submit']")).click();
+        Thread.sleep(10000);
+        WebElement passwordField = driver.findElement(By.id("password"));
+        passwordField.click();
+        passwordField.clear();
+        passwordField.sendKeys("1111");
+        Thread.sleep(1000);
+        driver.findElement(By.id("login-submit")).click();
+        Thread.sleep(20000);
+        WebElement errorMessage = driver.findElement(By.id("login-error"));
+        System.out.println("Test wrong password: " + errorMessage.getText());
+
     }
     @Test
     public void loginPositiveAndBoardButton() throws InterruptedException {
+        //positive
         WebElement loginField = driver.findElement(By.id("user"));
         loginField.click();
         loginField.clear();
@@ -63,7 +84,7 @@ public class LoginTests extends TestBase {
         Thread.sleep(1000);
         driver.findElement(By.id("login-submit")).click();
         Thread.sleep(20000);
-        System.out.println(driver.findElement(By.xpath("//button[@data-test-id=\"header-boards-menu-button\"]")).getText());
+        System.out.println(driver.findElement(By.xpath("//button[@data-test-id='header-boards-menu-button']")).getText());
 
     }
 }

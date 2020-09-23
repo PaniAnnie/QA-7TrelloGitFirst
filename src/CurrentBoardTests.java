@@ -27,8 +27,43 @@ import org.testng.annotations.Test;
             Thread.sleep(1000);
             driver.findElement(By.id("login-submit")).click();
             Thread.sleep(20000);
+            driver.findElement(By.xpath("//div[@title='QA Haifa7']")).click();
+            Thread.sleep(10000);
         }
 
+        @Test
+        public void loginPositiveAndAddList() throws InterruptedException {
+            System.out.println(driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
+            driver.findElement(By.xpath("//a[@class='open-add-list js-open-add-list']")).click();
+            WebElement nameListField = driver.findElement(By.xpath("//input[@class='list-name-input']"));
+            nameListField.click();
+            nameListField.clear();
+            nameListField.sendKeys("Testlist");
+            driver.findElement(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']")).click();
+            Thread.sleep(10000);
+            System.out.println(driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
+        }
+
+        @Test
+        public void loginPositiveAndDeleteList() throws InterruptedException {
+            if (driver.findElements(By.xpath("//div[@class='list js-list-content']")).size() == 0) {
+                driver.findElement(By.xpath("//a[@class='open-add-list js-open-add-list']")).click();
+                WebElement nameListField = driver.findElement(By.xpath("//input[@class='list-name-input']"));
+                nameListField.click();
+                nameListField.clear();
+                Thread.sleep(5000);
+                nameListField.sendKeys("Testlist");
+                Thread.sleep(5000);
+                driver.findElement(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']")).click();
+                Thread.sleep(10000);
+            }
+                System.out.println("Number of lists: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
+                driver.findElement(By.xpath("//a[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']")).click();
+                driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
+                System.out.println("Number of lists after deleting: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
+        }
+
+        /*
         @Test
         public void loginPositiveAndAddBoard() throws InterruptedException {
             System.out.println("Number of boards: " +
@@ -38,34 +73,13 @@ import org.testng.annotations.Test;
             nameBoardField.click();
             nameBoardField.clear();
             nameBoardField.sendKeys("TestBoard");
+            Thread.sleep(15000);
             driver.findElement(By.xpath("//button[@data-test-id=\"create-board-submit-button\"]")).click();
-            Thread.sleep(5000);
+            Thread.sleep(15000);
             driver.findElement(By.xpath("//a[@data-test-id=\"header-home-button\"]")).click();
             Thread.sleep(5000);
             System.out.println("NEW number of boards: " +
                     driver.findElements(By.xpath("//span[@class=\"icon-lg icon-member\"]/following::span[@class=\"board-tile-fade\"]")).size());
         }
-
-        @Test
-        public void loginPositiveAndDeleteList() throws InterruptedException {
-
-            driver.findElement(By.xpath("//div[@title=\"QA Haifa7\"]")).click();
-            Thread.sleep(10000);
-
-            if (driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size() == 0) {
-                driver.findElement(By.xpath("//a[@class='open-add-list js-open-add-list']")).click();
-                WebElement nameListField = driver.findElement(By.xpath("//input[@class=\"list-name-input\"]"));
-                nameListField.click();
-                nameListField.clear();
-                Thread.sleep(5000);
-                nameListField.sendKeys("Testlist");
-                Thread.sleep(5000);
-                driver.findElement(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']")).click();
-                Thread.sleep(10000);
-            }
-                System.out.println("Number of lists: " + driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
-                driver.findElement(By.xpath("//a[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']")).click();
-                driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
-                System.out.println("Number of lists after deleting: " + driver.findElements(By.xpath("//div[@class=\"list js-list-content\"]")).size());
-        }
+        */
     }
