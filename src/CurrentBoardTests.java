@@ -9,56 +9,57 @@ import org.testng.annotations.Test;
     public class CurrentBoardTests extends TestBase {
 
         @BeforeMethod
-        public void initTests() throws InterruptedException {
+        public void initTests() {
             WebElement loginIcon = driver.findElement(By.xpath("//a[@class='btn btn-sm btn-link text-white']"));
             loginIcon.click();
-            Thread.sleep(3000);
+            waitUntilElementIsClickable(By.id("user"), 15);
             WebElement loginField = driver.findElement(By.id("user"));
             loginField.click();
             loginField.clear();
             loginField.sendKeys(LOGIN);
-            Thread.sleep(1000);
+            waitUntilElementIsClickable(By.xpath("//input[@value='Log in with Atlassian']"), 10);
             driver.findElement(By.xpath("//input[@type='submit']")).click();
-            Thread.sleep(10000);
+            waitUntilElementIsClickable(By.id("password"), 15);
             WebElement passwordField = driver.findElement(By.id("password"));
             passwordField.click();
             passwordField.clear();
             passwordField.sendKeys(PASSWORD);
-            Thread.sleep(1000);
+            waitUntilElementIsClickable(By.id("login-submit"), 10);
             driver.findElement(By.id("login-submit")).click();
-            Thread.sleep(20000);
+            waitUntilElementIsClickable((By.xpath("//div[@title='QA Haifa7']")), 20);
             driver.findElement(By.xpath("//div[@title='QA Haifa7']")).click();
-            Thread.sleep(10000);
+            waitUntilElementIsClickable(By.xpath("//a[@class='open-add-list js-open-add-list']"), 10);
         }
 
         @Test
-        public void loginPositiveAndAddList() throws InterruptedException {
-            System.out.println(driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
+        public void loginPositiveAndAddList() {
+            System.out.println("Number of lists: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
             driver.findElement(By.xpath("//a[@class='open-add-list js-open-add-list']")).click();
+            waitUntilElementIsClickable(By.xpath("//input[@class='list-name-input']"), 10);
             WebElement nameListField = driver.findElement(By.xpath("//input[@class='list-name-input']"));
             nameListField.click();
             nameListField.clear();
             nameListField.sendKeys("Testlist");
+            waitUntilElementIsClickable(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']"), 10);
             driver.findElement(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']")).click();
-            Thread.sleep(10000);
-            System.out.println(driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
+            System.out.println("Number of lists after adding: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
         }
 
         @Test
-        public void loginPositiveAndDeleteList() throws InterruptedException {
+        public void loginPositiveAndDeleteList() {
             if (driver.findElements(By.xpath("//div[@class='list js-list-content']")).size() == 0) {
                 driver.findElement(By.xpath("//a[@class='open-add-list js-open-add-list']")).click();
+                waitUntilElementIsClickable(By.xpath("//input[@class='list-name-input']"), 10);
                 WebElement nameListField = driver.findElement(By.xpath("//input[@class='list-name-input']"));
                 nameListField.click();
                 nameListField.clear();
-                Thread.sleep(5000);
                 nameListField.sendKeys("Testlist");
-                Thread.sleep(5000);
+                waitUntilElementIsClickable(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']"), 10);
                 driver.findElement(By.xpath("//input[@class='primary mod-list-add-button js-save-edit']")).click();
-                Thread.sleep(10000);
             }
                 System.out.println("Number of lists: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
                 driver.findElement(By.xpath("//a[@class='list-header-extras-menu dark-hover js-open-list-menu icon-sm icon-overflow-menu-horizontal']")).click();
+                waitUntilElementIsClickable(By.xpath("//a[@class='js-close-list']"), 10);
                 driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
                 System.out.println("Number of lists after deleting: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
         }
