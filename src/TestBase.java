@@ -45,4 +45,28 @@ public class TestBase {
         }
     }
 
+    protected void waitUntilElementIsInvisible(By locator, int time) {
+        try {
+            new WebDriverWait(driver, time).until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void waitUntilElementsAreVisible(By locator, int time) {
+        try {
+            new WebDriverWait(driver, time).until(ExpectedConditions.visibilityOfAllElementsLocatedBy(locator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    protected void waitUntilElementIsVisible(By locator, int time) {
+        try {
+            new WebDriverWait(driver, time).until(ExpectedConditions.invisibilityOfElementLocated(locator));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
