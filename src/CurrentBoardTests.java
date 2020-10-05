@@ -75,7 +75,6 @@ import org.testng.annotations.Test;
                 WebElement xButton = driver.findElement(By.cssSelector("a.icon-close.dark-hover"));
                 xButton.click();
                 waitUntilElementIsInvisible(By.cssSelector("a.icon-close.dark-hover"), 5);
-
             }
                 waitUntilElementsAreVisible(By.xpath("//div[@class='list js-list-content']"), 10);
                 System.out.println("Number of lists: " + driver.findElements(By.xpath("//div[@class='list js-list-content']")).size());
