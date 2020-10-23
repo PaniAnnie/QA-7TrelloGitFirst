@@ -1,6 +1,7 @@
 package tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.support.PageFactory;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -17,9 +18,9 @@ public class CurrentBoardTests extends TestBase {
 
         @BeforeMethod
         public void initTests() {
-            homePage = new HomePageHelper(driver);
-            loginPage = new LoginPageHelper(driver);
-            boardsPage = new BoardsPageHelper(driver);
+            homePage = PageFactory.initElements(driver, HomePageHelper.class);
+            loginPage = PageFactory.initElements(driver, LoginPageHelper.class);
+            boardsPage = PageFactory.initElements(driver, BoardsPageHelper.class);
             qaHaifa7currentBoard = new CurrentBoardPageHelper(driver, "QA Haifa7");
 
             homePage.waitUntilPageIsLoaded();
@@ -39,38 +40,26 @@ public class CurrentBoardTests extends TestBase {
 
         @Test
         public void isCorrectCurrentBoard2() {
-        Assert.assertTrue(qaHaifa7currentBoard.isCorrectCurrentBoard(), "Header of the current board is wrong: ");
+            Assert.assertTrue(qaHaifa7currentBoard.isCorrectCurrentBoard(), "Header of the current board is wrong: ");
         }
 
         @Test
         public void loginPositiveAndAddList() {
-            //считаем количество листов
             int quantityOfListsInTheBeginning = qaHaifa7currentBoard.getQuantityOfListsInThisBoard();
-            System.out.println("Number of lists: " + qaHaifa7currentBoard.getQuantityOfListsInThisBoard());
-            //жмем добавить лист
             qaHaifa7currentBoard.addNewList();
-            //считаем количество листов
             int quantityOfListsInTheEnd = qaHaifa7currentBoard.getQuantityOfListsInThisBoard();
-            System.out.println("Number of lists after adding: " + qaHaifa7currentBoard.getQuantityOfListsInThisBoard());
-            //сравниваем
             Assert.assertEquals(quantityOfListsInTheEnd, quantityOfListsInTheBeginning+1, "Something goes wrong: ");
         }
 
-    @Test
+        @Test
         public void loginPositiveAndDeleteList() {
             if (qaHaifa7currentBoard.getQuantityOfListsInThisBoard() == 0) {
                 qaHaifa7currentBoard.addNewList();
             }
-                //считаем количество листов
                 int quantityOfListsInTheBeginning = qaHaifa7currentBoard.getQuantityOfListsInThisBoard();
-                System.out.println("Number of lists: " + qaHaifa7currentBoard.getQuantityOfListsInThisBoard());
-                //удаляем лист
                 qaHaifa7currentBoard.openFirstListExtraMenu();
                 qaHaifa7currentBoard.archiveThisList();
-                //считаем снова
                 int quantityOfListsInTheEnd = qaHaifa7currentBoard.getQuantityOfListsInThisBoard();
-                System.out.println("Number of lists: " + qaHaifa7currentBoard.getQuantityOfListsInThisBoard());
-                //сравниваем
                 Assert.assertEquals(quantityOfListsInTheEnd, quantityOfListsInTheBeginning-1, "Something goes wrong: ");
         }
 }
