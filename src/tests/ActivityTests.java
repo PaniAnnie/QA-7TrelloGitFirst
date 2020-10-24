@@ -27,10 +27,10 @@ public class ActivityTests extends TestBase{
         profileAndVisibilityPage = PageFactory.initElements(driver, ProfilePageHelper.class);
         activityPage = PageFactory.initElements(driver, ActivityPageHelper.class);
 
-        homePage.waitUntilPageIsLoaded();
-        homePage.openLoginPage();
-        loginPage.waitUntilPageIsLoaded();
-        loginPage.loginAtlassianUser(LOGIN, PASSWORD);
+        homePage.waitUntilPageIsLoaded()
+                .openLoginPage();
+        loginPage.waitUntilPageIsLoaded()
+                .loginAtlassianUser(LOGIN, PASSWORD);
         boardsPage.waitUntilPageIsLoaded();
 
     }
@@ -42,14 +42,12 @@ public class ActivityTests extends TestBase{
         if (qaHaifa7currentBoard.getQuantityOfListsInThisBoard() == 0) {
             qaHaifa7currentBoard.addNewList();
         }
-        qaHaifa7currentBoard.openFirstListExtraMenu();
-        qaHaifa7currentBoard.addNewCardInFirstList();
+        qaHaifa7currentBoard.openFirstListExtraMenu()
+                            .addNewCardInFirstList();
         horizontalMenu.openDropMenuPage();
-        dropMenu.waitUntilPageIsLoaded();
-        dropMenu.openProfilePage();
+        dropMenu.waitUntilPageIsLoaded()
+                .openProfilePage();
         profileAndVisibilityPage.openActivityTab();
         Assert.assertTrue(activityPage.getLastActionText().contains("added Testcard"));
-
     }
-
 }

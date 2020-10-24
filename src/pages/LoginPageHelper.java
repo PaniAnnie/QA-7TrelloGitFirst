@@ -35,51 +35,60 @@ public class LoginPageHelper extends PageBase {
         this.driver = driver;
     }
 
-    public void loginNotAtlassianUser(String login, String password) {
+    public LoginPageHelper loginNotAtlassianUser(String login, String password) {
         loginNotAtlassianUsername(login);
         enterPassword(password);
         pressLoginButton();
+        return this;
     }
 
-    public void loginAtlassianUser(String login, String password) {
+    public LoginPageHelper loginAtlassianUser(String login, String password) {
         loginAtlassianUsername(login);
         loginUserAsAtlassian();
         enterPassword(password);
         pressAtlassianLoginButton();
+        return this;
     }
 
-    public void waitUntilPageIsLoaded() {
+    public LoginPageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(loginField, 15);
         waitUntilElementIsClickable(passwordField, 15);
         waitUntilElementIsClickable(loginButton, 10);
+        return this;
     }
 
-    public void loginNotAtlassianUsername(String login) {
+    public LoginPageHelper loginNotAtlassianUsername(String login) {
         editField(loginField, login);
+        return this;
     }
 
-    public void loginAtlassianUsername(String login) {
+    public LoginPageHelper loginAtlassianUsername(String login) {
         editField(loginField, login);
+        return this;
     }
 
-    public void enterPassword(String password) {
+    public LoginPageHelper enterPassword(String password) {
         waitUntilElementIsClickable(passwordField, 15);
         editField(passwordField, password);
+        return this;
     }
 
-    public void pressLoginButton() {
+    public LoginPageHelper pressLoginButton() {
         waitUntilElementIsClickable(loginButton, 15);
         loginButton.click();
+        return this;
     }
 
-    public void loginUserAsAtlassian() {
+    public LoginPageHelper loginUserAsAtlassian() {
         waitUntilElementIsClickable(loginUserAtl, 10);
         loginUserAtl.click();
+        return this;
     }
 
-    public void pressAtlassianLoginButton() {
+    public LoginPageHelper pressAtlassianLoginButton() {
         waitUntilElementIsClickable(loginButtonAtl, 10);
         loginButtonAtl.click();
+        return this;
     }
 
     public String getErrorMessage(){

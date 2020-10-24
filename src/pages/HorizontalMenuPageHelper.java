@@ -30,9 +30,10 @@ public class HorizontalMenuPageHelper extends PageBase {
         return titleOfMenuIcon;
     }
 
-    public void openDropMenuPage() {
+    public HorizontalMenuPageHelper openDropMenuPage() {
         waitUntilElementIsClickable(memberMenuIcon,10);
         memberMenuIcon.click();
+        return this;
     }
 
 

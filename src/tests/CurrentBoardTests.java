@@ -23,12 +23,12 @@ public class CurrentBoardTests extends TestBase {
             boardsPage = PageFactory.initElements(driver, BoardsPageHelper.class);
             qaHaifa7currentBoard = new CurrentBoardPageHelper(driver, "QA Haifa7");
 
-            homePage.waitUntilPageIsLoaded();
-            homePage.openLoginPage();
-            loginPage.waitUntilPageIsLoaded();
-            loginPage.loginAtlassianUser(LOGIN, PASSWORD);
-            boardsPage.waitUntilPageIsLoaded();
-            boardsPage.openCurrentBoardPage("QA Haifa7");
+            homePage.waitUntilPageIsLoaded()
+                    .openLoginPage();
+            loginPage.waitUntilPageIsLoaded()
+                    .loginAtlassianUser(LOGIN, PASSWORD);
+            boardsPage.waitUntilPageIsLoaded()
+                    .openCurrentBoardPage("QA Haifa7");
             qaHaifa7currentBoard.waitUntilPageIsLoaded();
         }
 
@@ -57,8 +57,8 @@ public class CurrentBoardTests extends TestBase {
                 qaHaifa7currentBoard.addNewList();
             }
                 int quantityOfListsInTheBeginning = qaHaifa7currentBoard.getQuantityOfListsInThisBoard();
-                qaHaifa7currentBoard.openFirstListExtraMenu();
-                qaHaifa7currentBoard.archiveThisList();
+                qaHaifa7currentBoard.openFirstListExtraMenu()
+                                    .archiveThisList();
                 int quantityOfListsInTheEnd = qaHaifa7currentBoard.getQuantityOfListsInThisBoard();
                 Assert.assertEquals(quantityOfListsInTheEnd, quantityOfListsInTheBeginning-1, "Something goes wrong: ");
         }

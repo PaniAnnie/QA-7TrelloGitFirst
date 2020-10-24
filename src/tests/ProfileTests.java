@@ -23,15 +23,15 @@ public class ProfileTests extends TestBase {
         horizontalMenu = PageFactory.initElements(driver, HorizontalMenuPageHelper.class);
         profileAndVisibilityPage = PageFactory.initElements(driver, ProfilePageHelper.class);
 
-        homePage.waitUntilPageIsLoaded();
-        homePage.openLoginPage();
-        loginPage.waitUntilPageIsLoaded();
-        loginPage.loginAtlassianUser(LOGIN, PASSWORD);
+        homePage.waitUntilPageIsLoaded()
+                .openLoginPage();
+        loginPage.waitUntilPageIsLoaded()
+                .loginAtlassianUser(LOGIN, PASSWORD);
         boardsPage.waitUntilPageIsLoaded();
-        horizontalMenu.waitUntilPageIsLoaded();
-        horizontalMenu.openDropMenuPage();
-        dropMenu.waitUntilPageIsLoaded();
-        dropMenu.openProfilePage();
+        horizontalMenu.waitUntilPageIsLoaded()
+                      .openDropMenuPage();
+        dropMenu.waitUntilPageIsLoaded()
+                .openProfilePage();
         profileAndVisibilityPage.waitUntilPageIsLoaded();
 
     }

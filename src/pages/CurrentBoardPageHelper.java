@@ -55,9 +55,10 @@ public class CurrentBoardPageHelper extends PageBase {
         PageFactory.initElements(driver, this);
     }
 
-    public void waitUntilPageIsLoaded() {
+    public CurrentBoardPageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(boardButton, 15);
         waitUntilElementIsVisible(headerIcon, 10);
+        return this;
     }
 
     public String getCurrentBoardHeader(){
@@ -73,65 +74,77 @@ public class CurrentBoardPageHelper extends PageBase {
         return listAllListsInTheBoard.size();
     }
 
-    public void addNewList() {
+    public CurrentBoardPageHelper addNewList() {
         clickAddingList();
         enterNewListName("Testlist");
         submitAddingList();
         stopAddingList();
+        return this;
     }
 
-    public void stopAddingList() {
+    public CurrentBoardPageHelper stopAddingList() {
         stopAddingListButton.click();
         waitUntilElementIsInvisible(stopAddingListButton,5);
+        return this;
     }
 
-    public void submitAddingList() {
+    public CurrentBoardPageHelper submitAddingList() {
         waitUntilElementIsClickable(submitListButton, 10);
         submitListButton.click();
+        return this;
     }
 
-    public void enterNewListName(String listName) {
+    public CurrentBoardPageHelper enterNewListName(String listName) {
         editField(nameListField, listName);
+        return this;
     }
 
-    public void clickAddingList() {
+    public CurrentBoardPageHelper clickAddingList() {
         initAddingList.click();
         waitUntilElementIsClickable(nameListField, 10);
+        return this;
     }
 
-    public void archiveThisList() {
+    public CurrentBoardPageHelper archiveThisList() {
         putListToArchive.click();
         waitUntilElementIsInvisible(putListToArchive, 5);
+        return this;
     }
 
-    public void openFirstListExtraMenu() {
+    public CurrentBoardPageHelper openFirstListExtraMenu() {
         firstListExtraMenu.click();
         waitUntilElementIsClickable(putListToArchive, 10);
+        return this;
     }
 
-    public void addNewCardInFirstList() {
+    public CurrentBoardPageHelper addNewCardInFirstList() {
         clickAddingCard();
         enterNewCardName("Testcard");
         submitAddingCard();
         stopAddingCard();
+        return this;
     }
 
-    public void clickAddingCard() {
+    public CurrentBoardPageHelper clickAddingCard() {
         initAddingCard.click();
         waitUntilElementIsClickable(nameCardField, 10);
+        return this;
     }
 
-    public void enterNewCardName(String cardName) {
+    public CurrentBoardPageHelper enterNewCardName(String cardName) {
         editField(nameCardField, cardName);
+        return this;
     }
 
-    public void stopAddingCard() {
+    public CurrentBoardPageHelper stopAddingCard() {
         stopAddingCardButton.click();
         waitUntilElementIsInvisible(stopAddingCardButton,5);
+        return this;
     }
 
-    public void submitAddingCard() {
+    public CurrentBoardPageHelper submitAddingCard() {
         waitUntilElementIsClickable(submitCardButton, 10);
         submitCardButton.click();
+        return this;
     }
 }

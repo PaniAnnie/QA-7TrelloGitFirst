@@ -20,8 +20,8 @@ HorizontalMenuPageHelper horizontalMenu;
         loginPage = PageFactory.initElements(driver, LoginPageHelper.class);
         horizontalMenu = PageFactory.initElements(driver, HorizontalMenuPageHelper.class);
 
-        homePage.waitUntilPageIsLoaded();
-        homePage.openLoginPage();
+        homePage.waitUntilPageIsLoaded()
+                .openLoginPage();
         loginPage.waitUntilPageIsLoaded();
     }
 

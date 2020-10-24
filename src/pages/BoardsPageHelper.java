@@ -21,8 +21,9 @@ public class BoardsPageHelper extends PageBase {
         return this;
     }
 
-    public void openCurrentBoardPage(String boardName) {
+    public BoardsPageHelper openCurrentBoardPage(String boardName) {
         WebElement board = driver.findElement(By.xpath("//li[@class='boards-page-board-section-list-item'][.//div[@title='"+boardName+"']]"));
         board.click();
+        return this;
     }
 }

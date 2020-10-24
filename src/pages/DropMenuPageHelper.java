@@ -13,12 +13,14 @@ public class DropMenuPageHelper extends PageBase{
     super(driver);
     }
 
-    public void waitUntilPageIsLoaded() {
+    public DropMenuPageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(linkToProfile,10);
+        return this;
     }
 
-    public void openProfilePage() {
+    public DropMenuPageHelper openProfilePage() {
         linkToProfile.click();
+        return this;
     }
 
 }

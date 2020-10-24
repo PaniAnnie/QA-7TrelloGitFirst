@@ -13,11 +13,13 @@ public class HomePageHelper extends PageBase{
         super(driver);
     }
 
-    public void waitUntilPageIsLoaded() {
+    public HomePageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsClickable(loginIcon, 30);
+        return this;
     }
 
-    public void openLoginPage() {
+    public HomePageHelper openLoginPage() {
         loginIcon.click();
+        return this;
     }
 }

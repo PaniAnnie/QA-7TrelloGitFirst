@@ -20,9 +20,10 @@ public class ProfilePageHelper extends PageBase{
         super(driver);
     }
 
-    public void waitUntilPageIsLoaded() {
+    public ProfilePageHelper waitUntilPageIsLoaded() {
         waitUntilElementIsVisible(memberUsername,10);
         waitUntilElementIsClickable(profileTab,10);
+        return this;
     }
 
     public String getProfileTabName() {
@@ -33,8 +34,9 @@ public class ProfilePageHelper extends PageBase{
         return memberUsername.getAttribute("value");
     }
 
-    public void openActivityTab(){
+    public ProfilePageHelper openActivityTab(){
         waitUntilElementIsClickable(activityTab, 20);
         activityTab.click();
+        return this;
     }
 }
